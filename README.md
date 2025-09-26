@@ -229,7 +229,7 @@ local args = {
 game:GetService("ReplicatedStorage"):WaitForChild("RE"):WaitForChild("1RPNam1eColo1r"):FireServer(unpack(args))
 
 
-local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/wx-sources/Redzmagnusv5/refs/heads/main/RedzV5.Lua.txt"))()
+local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/youssefhesham542/Y2-Hub/main/Redz%20str"))()
 workspace.FallenPartsDestroyHeight = -math.huge
 
 local Window = Libary:MakeWindow({
