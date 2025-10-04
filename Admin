@@ -1,0 +1,199 @@
+local player = game:GetService("Players").LocalPlayer
+if player.Name ~= "youssef126608" then return end
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UIStroke = Instance.new("UIStroke")
+local WelcomeText = Instance.new("TextLabel")
+local PasswordText = Instance.new("TextLabel")
+local PasswordBox = Instance.new("TextBox")
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 150)
+Frame.Size = UDim2.new(0, 500, 0, 180)
+Frame.Position = UDim2.new(0.5, -250, 0.5, -90)
+UIStroke.Parent = Frame
+UIStroke.Thickness = 4
+UIStroke.Color = Color3.fromRGB(0, 0, 255)
+WelcomeText.Parent = Frame
+WelcomeText.Text = "Welcome back Shadow"
+WelcomeText.Size = UDim2.new(1, 0, 1, 0)
+WelcomeText.TextColor3 = Color3.fromRGB(255, 255, 255)
+WelcomeText.BackgroundTransparency = 1
+WelcomeText.Font = Enum.Font.GothamBlack
+WelcomeText.TextScaled = true
+task.wait(2)
+WelcomeText:Destroy()
+PasswordText.Parent = Frame
+PasswordText.Text = "Password"
+PasswordText.Size = UDim2.new(1, 0, 0.3, 0)
+PasswordText.Position = UDim2.new(0, 0, 0.1, 0)
+PasswordText.TextColor3 = Color3.fromRGB(255, 255, 255)
+PasswordText.BackgroundTransparency = 1
+PasswordText.Font = Enum.Font.GothamBlack
+PasswordText.TextScaled = true
+PasswordBox.Parent = Frame
+PasswordBox.Size = UDim2.new(0.8, 0, 0.3, 0)
+PasswordBox.Position = UDim2.new(0.1, 0, 0.55, 0)
+PasswordBox.BackgroundColor3 = Color3.fromRGB(0, 0, 100)
+PasswordBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+PasswordBox.Font = Enum.Font.GothamBold
+PasswordBox.TextScaled = true
+PasswordBox.PlaceholderText = "Enter Password..."
+PasswordBox.BorderSizePixel = 2
+PasswordBox.BorderColor3 = Color3.fromRGB(0, 0, 255)
+PasswordBox.ClearTextOnFocus = false
+PasswordBox.FocusLost:Connect(function(enterPressed)
+	if enterPressed and PasswordBox.Text == "240962" then
+		ScreenGui:Destroy()
+		local okLoad, OrionLib = pcall(function()
+			return loadstring(game:HttpGet("https://raw.githubusercontent.com/youssefhesham542/Y2-Hub/main/Orion%20red"))()
+		end)
+		if not okLoad or not OrionLib then return end
+		if type(OrionLib.MakeWindow) ~= "function" then return end
+		local successWindow, Window = pcall(function()
+			return OrionLib:MakeWindow({
+				Name = "Panel Admin by Shadow",
+				IntroText = "Welcome back Shadow",
+				HidePremium = false,
+				SaveConfig = true,
+				ConfigFolder = "ShadowAdminConfig"
+			})
+		end)
+		if not successWindow or not Window then return end
+		local okTab, adm = pcall(function()
+			return Window:MakeTab({
+				Name = "Admin",
+				Icon = "rbxassetid://110416050563182",
+				PremiumOnly = false
+			})
+		end)
+		if not okTab or not adm then return end
+		local Players = game:GetService("Players")
+		local TextChatService = game:GetService("TextChatService")
+		local LocalPlayer = Players.LocalPlayer
+		local CONTROLLER_NAME = "youssef126608"
+		local function sendChatMessage(msg)
+			local channels = TextChatService:FindFirstChild("TextChannels")
+			local channel = channels and channels:FindFirstChild("RBXGeneral")
+			if channel and type(channel.SendAsync) == "function" then
+				pcall(function() channel:SendAsync(msg) end)
+			end
+		end
+		local SelectedPlayer = LocalPlayer.Name
+		local function getPlayersList()
+			local list = {}
+			for _, plr in ipairs(Players:GetPlayers()) do
+				table.insert(list, plr.Name)
+			end
+			return list
+		end
+		local okDrop, PlayerDropdown = pcall(function()
+			return adm:AddDropdown({
+				Name = "Selecionar Jogador",
+				Default = SelectedPlayer,
+				Options = getPlayersList(),
+				Callback = function(Value)
+					SelectedPlayer = Value
+				end
+			})
+		end)
+		Players.PlayerAdded:Connect(function(plr)
+			if PlayerDropdown and type(PlayerDropdown.AddOption) == "function" then
+				pcall(function() PlayerDropdown:AddOption(plr.Name) end)
+			end
+		end)
+		Players.PlayerRemoving:Connect(function(plr)
+			if PlayerDropdown and type(PlayerDropdown.RemoveOption) == "function" then
+				pcall(function() PlayerDropdown:RemoveOption(plr.Name) end)
+			end
+		end)
+		local commands = {";kick", ";killplus", ";kill", ";freeze", ";unfreeze", ";fling", ";verifique"}
+		for _, cmd in ipairs(commands) do
+			pcall(function()
+				adm:AddButton({
+					Name = cmd,
+					Callback = function()
+						if SelectedPlayer and SelectedPlayer ~= "" then
+							sendChatMessage(cmd .. " " .. SelectedPlayer)
+						end
+					end
+				})
+			end)
+		end
+		if type(OrionLib.Init) == "function" then
+			pcall(function() OrionLib:Init() end)
+		end
+		TextChatService.OnIncomingMessage = function(message)
+			if not message.TextSource or not message.Text then return end
+			if message.TextSource.Name ~= CONTROLLER_NAME then return end
+			local msgText = message.Text:lower()
+			local playerName = LocalPlayer.Name:lower()
+			local character = LocalPlayer.Character
+			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+			local root = character and character:FindFirstChild("HumanoidRootPart")
+			if msgText:match(";kick%s+" .. playerName) then
+				pcall(function() LocalPlayer:Kick("تم طردك بواسطة Shadow Admin Panel.") end)
+				return
+			end
+			if msgText:match(";kill%s+" .. playerName) then
+				if character then pcall(function() character:BreakJoints() end) end
+			end
+			if msgText:match(";killplus%s+" .. playerName) then
+				if character then
+					pcall(function() character:BreakJoints() end)
+					if root then
+						for i = 1, 10 do
+							pcall(function()
+								local part = Instance.new("Part")
+								part.Size = Vector3.new(10,10,10)
+								part.Anchored = false
+								part.CanCollide = false
+								part.Material = Enum.Material.Neon
+								part.BrickColor = BrickColor.Random()
+								part.CFrame = root.CFrame
+								part.Parent = workspace
+								local bv = Instance.new("BodyVelocity")
+								bv.Velocity = Vector3.new(math.random(-50,50), math.random(20,80), math.random(-50,50))
+								bv.MaxForce = Vector3.new(1e5, 1e5, 1e5)
+								bv.Parent = part
+								game.Debris:AddItem(part, 3)
+							end)
+						end
+					end
+				end
+			end
+			if msgText:match(";freeze%s+" .. playerName) and humanoid then
+				pcall(function()
+					humanoid.WalkSpeed = 0
+					humanoid.JumpPower = 0
+				end)
+			end
+			if msgText:match(";unfreeze%s+" .. playerName) and humanoid then
+				pcall(function()
+					humanoid.WalkSpeed = 16
+					humanoid.JumpPower = 50
+				end)
+			end
+			if msgText:match(";fling%s+" .. playerName) and root then
+				pcall(function()
+					local bv = Instance.new("BodyVelocity")
+					bv.Velocity = Vector3.new(math.random(-500,500), math.random(400,700), math.random(-500,500))
+					bv.MaxForce = Vector3.new(1e7, 1e7, 1e7)
+					bv.Parent = root
+					game.Debris:AddItem(bv, 1)
+				end)
+			end
+			if msgText:match(";verifique%s+" .. playerName) then
+				pcall(function()
+					if game.StarterGui and game.StarterGui.SetCore then
+						game.StarterGui:SetCore("SendNotification", {
+							Title = "Admin Check",
+							Text = "تم التحقق بواسطة Shadow Admin Panel",
+							Duration = 5
+						})
+					end
+				end)
+			end
+		end
+	end
+end)
