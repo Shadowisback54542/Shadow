@@ -33,14 +33,14 @@ if not redzlib then error("deu red") end
 workspace.FallenPartsDestroyHeight = -math.huge
 
 local Window = redzlib:MakeWindow({
-    Title = Translator:traduzir("Drip Client Solutions | Brookhaven Rp | Português"),
-    SubTitle = "                  Dev < Magnus999 >",
-    SaveFolder = "redz Hub | Brookhaven RP.lua"
+    Title = Translator:traduzir("Y2 HUB | BROOKHAVEN Hubip"),
+    SubTitle = "                  Dev < Shadow >",
+    SaveFolder = "y2 Hub | Brookhaven RP.lua"
 })
 
 Window:AddMinimizeButton({
 	Button = {
-		Image = "rbxassetid://72495850369898"
+		Image = "rbxassetid://110416050563182"
 	},
 	Corner = {
 		CornerRadius = UDim.new(0, 2)
@@ -174,29 +174,26 @@ Window:Dialog({
     }
 })
 local Tabs = {
-    M = Window:MakeTab({Translator:traduzir("informações"), "Info"}),
-    H = Window:MakeTab({Translator:traduzir("Início"), "coffee"}),
-    PR = Window:MakeTab({Translator:traduzir("Proteção"), "shield"}),
-    Client = Window:MakeTab({Translator:traduzir("Spam/Client"), "eye"}),
-    JJ = Window:MakeTab({Translator:traduzir("Personagem"), "userplus"}),
-    TT = Window:MakeTab({Translator:traduzir("Trolar"), "flame"}),
-    LG = Window:MakeTab({Translator:traduzir("Lag Servidor"), "bomb"}),
-    AD = Window:MakeTab({Translator:traduzir("Audio/Musica"), "headphones"}),
-    AVT = Window:MakeTab({Translator:traduzir("Roupas"), "shirt"}),
-    HouseTab = Window:MakeTab({Translator:traduzir("Casa"), "home"}),
-    Carros = Window:MakeTab({Translator:traduzir("Carro"), "truck"}),
-    Tp = Window:MakeTab({Translator:traduzir("Portal"), "apple"}),
-    CFG = Window:MakeTab({Translator:traduzir("Configurações"), "Settings"})
+    M = Window:MakeTab({Translator:traduzir("حقوق"), "Info"}),
+    H = Window:MakeTab({Translator:traduzir("البدايه"), "coffee"}),
+    PR = Window:MakeTab({Translator:traduzir("حمايه"), "shield"}),
+    Client = Window:MakeTab({Translator:traduzir("اسبام"), "eye"}),
+    JJ = Window:MakeTab({Translator:traduzir("الشخصيه"), "userplus"}),
+    TT = Window:MakeTab({Translator:traduzir("تخريب"), "flame"}),
+    LG = Window:MakeTab({Translator:traduzir("لاق"), "bomb"}),
+    AD = Window:MakeTab({Translator:traduzir("اغاني"), "headphones"}),
+    AVT = Window:MakeTab({Translator:traduzir("اسكنات"), "shirt"}),
+    HouseTab = Window:MakeTab({Translator:traduzir("البيت"), "home"}),
+    Carros = Window:MakeTab({Translator:traduzir("سيارات"), "truck"}),
+    Tp = Window:MakeTab({Translator:traduzir("التنقلات"), "apple"}),
+    CFG = Window:MakeTab({Translator:traduzir("اعدادات"), "Settings"})
 }
 
 Tabs.M:AddDiscordInvite({
-    Name = Translator:traduzir("Drip Hub | Community"),
-    Description = Translator:traduzir("Junte-se à nossa comunidade discord para receber informações sobre a próxima atualização"),
-    Logo = "rbxassetid://94502262507600",
-    Invite = "https://discord.gg/6YzXUMu49y"
-})
-
-Tabs.M:AddSection({Translator:traduzir("Acess Admin")})
+    Name = ("Y2 Hub | Community"),
+    Description = Translator:traduzir("انضم الي مجموعتنا"),
+    Logo = "rbxassetid://110416050563182",
+    Invite "https://t.me/+cp_discordection({Translator:traduzir("Acess Admin")})
 Tabs.M:AddButton({Translator:traduzir("Painel Admin"), function()
 Window:Dialog({
     Title = Translator:traduzir("Como Obter Grátis"),
@@ -210,8 +207,7 @@ Window:Dialog({
 end})
 
 local function links()
-    setclipboard("https://discord.gg/6YzXUMu49y")
-end
+    setclipboard("https://t.me/+cp_cDBRdKdoyOGNk")
 
 local gameName = "Unknown Game"
 
